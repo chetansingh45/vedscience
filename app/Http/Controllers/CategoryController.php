@@ -27,4 +27,30 @@ class CategoryController extends Controller
         
         return $response;
     }
+
+    public function list() {
+        return Category::with('books')->get();
+    }
+
+    public function destroy(Request $request)
+    {
+        $response = array('response' => '', 'success'=>false);
+        $validator = Validator::make($request->all(), ['id' => 'required']);
+        
+        if ($validator->fails()) {
+          $response['response'] = $validator->messages();
+        } else {
+            $category = Category::find($request->id);
+            if($category->delete()){
+                $response['response'] = 'category deleted successfully';
+                $response['success'] = true;
+            }
+        }
+        
+        return $response;
+    }
+
+    public function show($id) {
+        return Category::with('books')->first();
+    }
 }
