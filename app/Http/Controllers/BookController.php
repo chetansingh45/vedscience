@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use Validator;
+use File;
 
 class BookController extends Controller
 {
@@ -13,7 +14,7 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function list()
     {
         return Book::with('category')->get();
     }
@@ -109,6 +110,9 @@ class BookController extends Controller
           $response['response'] = $validator->messages();
         } else {
             $book = Book::find($request->id);
+            if(File::exists(public_path('books/'.$book->book))){
+                File::delete(public_path('books/'.$book->book));
+            }
             if($book->delete()){
                 $response['response'] = 'book deleted successfully';
                 $response['success'] = true;
