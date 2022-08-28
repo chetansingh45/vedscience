@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BookController;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +22,7 @@ Route::get('/', function () {
 });
 
 
-Route::group(['middleware' => 'checkHeader'],function (){
+Route::group(['middleware' => 'auth:sanctum'],function (){
     Route::post('/category/create',[CategoryController::class,'store']);
     Route::post('/category/delete',[CategoryController::class,'destroy']);
     Route::get('/category',[CategoryController::class,'list']);
@@ -30,5 +33,13 @@ Route::group(['middleware' => 'checkHeader'],function (){
     Route::post('/book/delete',[BookController::class,'destroy']);
     Route::get('/book/{id}',[BookController::class,'show']);
 });
+
+Route::post('/user/login',[AuthController::class,'login']);
+Route::get('/user/logout',[AuthController::class,'logout']);
+
+Route::get('/abc',function(Request $request){
+    return "a";
+})->middleware('auth:sanctum');
+
 
 

@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,12 +20,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/category/create',[CategoryController::class,'create'])->middleware('checkHeader');
-Route::post('/category/delete',[CategoryController::class,'destroy'])->middleware('checkHeader');
-Route::get('/category',[CategoryController::class,'list'])->middleware('checkHeader');
-Route::get('/category/{id}',[CategoryController::class,'show'])->middleware('checkHeader');
+Route::group(['middleware' => 'auth:sanctum'],function (){
+    Route::post('/category/create',[CategoryController::class,'store']);
+    Route::post('/category/delete',[CategoryController::class,'destroy']);
+    Route::get('/category',[CategoryController::class,'list']);
+    Route::get('/category/{id}',[CategoryController::class,'show']);
 
-Route::post('/book/create',[BookController::class,'store'])->middleware('checkHeader');
-Route::get('/books',[BookController::class,'index'])->middleware('checkHeader');
-Route::post('/book/delete',[BookController::class,'destroy'])->middleware('checkHeader');
-Route::get('/book/{id}',[BookController::class,'show'])->middleware('checkHeader');
+    Route::get('/book',[BookController::class,'list']);
+    Route::post('/book/create',[BookController::class,'store']);
+    Route::post('/book/delete',[BookController::class,'destroy']);
+    Route::get('/book/{id}',[BookController::class,'show']);
+    Route::get('/user/logout',[AuthController::class,'logout']);
+
+});
+
+Route::post('/user/login',[AuthController::class,'login']);
+
+
