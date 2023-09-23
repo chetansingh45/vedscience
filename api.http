@@ -1,4 +1,4 @@
-@url = http://localhost/ved/api/
+@url = http://localhost:8000/api/
 @accept= Accept: application/json
 @token = 9|YAPVn0fmcdcZoH8LdBYZjsN32CKJvvTfPxOtTNOL
 @auth = Authorization: Bearer {{token}}

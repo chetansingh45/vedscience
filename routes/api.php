@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SliderController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -31,6 +32,9 @@ Route::group(['middleware' => 'auth:sanctum'],function (){
     Route::post('/book/delete',[BookController::class,'destroy']);
     Route::get('/book/{id}',[BookController::class,'show']);
     Route::get('/user/logout',[AuthController::class,'logout']);
+
+    Route::get('/slider',[SliderController::class,'index']);
+    Route::get('/slider/{slider}',[SliderController::class,'show']);
 
 });
 

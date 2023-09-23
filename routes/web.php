@@ -6,6 +6,10 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BookController;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+use App\Http\Controllers\SliderController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +36,10 @@ Route::group(['middleware' => 'auth:sanctum'],function (){
     Route::post('/book/create',[BookController::class,'store']);
     Route::post('/book/delete',[BookController::class,'destroy']);
     Route::get('/book/{id}',[BookController::class,'show']);
+
+    Route::get('/slider',[SliderController::class,'index']);
+    Route::get('/slider/{slider}',[SliderController::class,'show']);
+
 });
 
 Route::post('/user/login',[AuthController::class,'login']);

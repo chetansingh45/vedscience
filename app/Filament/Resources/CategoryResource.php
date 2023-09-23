@@ -12,6 +12,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Section;
 
 class CategoryResource extends Resource
 {
@@ -23,9 +26,13 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
+                Fieldset::make('Category Information')
+                    ->columns(1)
+                    ->schema([
+                        Forms\Components\TextInput::make('name')
+                            ->required()
+                            ->maxLength(255),
+                    ]),
             ]);
     }
 
