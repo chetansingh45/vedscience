@@ -25,29 +25,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/category',[CategoryController::class,'list']);
+Route::get('/category/{id}',[CategoryController::class,'show']);
 
-Route::group(['middleware' => 'auth:sanctum'],function (){
-    Route::post('/category/create',[CategoryController::class,'store']);
-    Route::post('/category/delete',[CategoryController::class,'destroy']);
-    Route::get('/category',[CategoryController::class,'list']);
-    Route::get('/category/{id}',[CategoryController::class,'show']);
+Route::get('/slider',[SliderController::class,'index']);
+Route::get('/slider/{slider}',[SliderController::class,'show']);
 
-    Route::get('/book',[BookController::class,'list']);
-    Route::post('/book/create',[BookController::class,'store']);
-    Route::post('/book/delete',[BookController::class,'destroy']);
-    Route::get('/book/{id}',[BookController::class,'show']);
+Route::get('/book/{id}',[BookController::class,'show']);
+Route::get('/book',[BookController::class,'list']);
 
-    Route::get('/slider',[SliderController::class,'index']);
-    Route::get('/slider/{slider}',[SliderController::class,'show']);
-
-});
-
-Route::post('/user/login',[AuthController::class,'login']);
-Route::get('/user/logout',[AuthController::class,'logout']);
-
-Route::get('/abc',function(Request $request){
-    return "a";
-})->middleware('auth:sanctum');
 
 
 

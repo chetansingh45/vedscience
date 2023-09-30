@@ -61,7 +61,7 @@ class SliderResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('image')
-                    ->url(fn ($record) => env('APP_URL') . '/storage/' . $record->image)
+                    ->url(fn ($record) =>  $record->image)
                     ->openUrlInNewTab(),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable()
