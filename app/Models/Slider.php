@@ -15,4 +15,8 @@ class Slider extends Model
         'status',
         'order',
     ];
+
+    public function getImageAttribute($value){
+        return asset('storage/'.$value);
+    }
 }

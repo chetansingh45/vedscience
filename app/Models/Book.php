@@ -16,6 +16,10 @@ class Book extends Model
         'book'
     ];
 
+    public function getBookAttribute($value){
+        return asset('storage/'.$value);
+    }
+
     public function category(){
         return $this->belongsTo(Category::class,'cat_id',);
     }

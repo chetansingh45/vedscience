@@ -60,7 +60,7 @@ class BookResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('book')
-                ->url( fn($record) =>  env('APP_URL') . '/storage/' . $record->book)
+                ->url( fn($record) =>  $record->book)
                 ->openUrlInNewTab()
 
                     ,
