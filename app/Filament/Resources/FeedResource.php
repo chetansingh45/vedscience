@@ -16,6 +16,10 @@ use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
 
+use Filament\Forms\Components\FileUpload;
+
+
+
 class FeedResource extends Resource
 {
     protected static ?string $model = Feed::class;
@@ -45,6 +49,12 @@ class FeedResource extends Resource
                             ->required()
                             ->columnSpanFull(),
                 ]),
+                Forms\Components\FileUpload::make('Image')
+                ->required()
+              
+                
+
+   
             ]);
     }
 
@@ -66,8 +76,11 @@ class FeedResource extends Resource
                     ->html()
                     ->lineClamp(1)
                     ->searchable()
-                    ->sortable()
+                    ->sortable(),
 
+             
+                Tables\Columns\ImageColumn::make('image')
+               
             ])
             ->filters([
                 //

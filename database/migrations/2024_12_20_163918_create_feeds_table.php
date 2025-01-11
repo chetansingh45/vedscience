@@ -16,6 +16,7 @@ return new class extends Migration
             $table->longText('title');
             $table->longText('description');
             $table->tinyInteger('status')->default(1)->comment('0: Inactive, 1: Active');
+            $table->longText('image')->nullable();
             $table->timestamps();
         });
     }

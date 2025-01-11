@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\FeedController;
 
 
 
@@ -35,6 +36,10 @@ Route::get('/slider/{slider}',[SliderController::class,'show']);
 Route::get('/book/{id}',[BookController::class,'show']);
 Route::get('/book',[BookController::class,'list']);
 
+Route::get('/feed',[FeedController::class,'list']);
+Route::get('/feed/{id}',[FeedController::class,'show']);
+
+Route::post('/feeds', [FeedController::class, 'store']);
 
 
 

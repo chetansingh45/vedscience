@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth:sanctum'],function (){
     Route::get('/slider',[SliderController::class,'index']);
     Route::get('/slider/{slider}',[SliderController::class,'show']);
 
+    
 });
 
 Route::post('/user/login',[AuthController::class,'login']);
