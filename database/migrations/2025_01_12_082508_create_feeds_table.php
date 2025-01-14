@@ -13,12 +13,20 @@ return new class extends Migration
     {
         Schema::create('feeds', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('feed_cat_id');
+            $table->foreign('feed_cat_id')
+                  ->references('id')
+                  ->on('feed_categories'); 
             $table->longText('title');
+            $table->longText('slug')->unique();;
             $table->longText('description');
             $table->tinyInteger('status')->default(1)->comment('0: Inactive, 1: Active');
-            $table->longText('image')->nullable();
+            $table->json('tags')->nullable();
+            $table->string('main_image')->nullable();
+            $table->string('thumbnail_image')->nullable();
             $table->timestamps();
         });
+      
     }
 
     /**
